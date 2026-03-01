@@ -1,0 +1,431 @@
+{
+  "name": "Automated Email Classification & Response System",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "labelIds": "INBOX",
+          "q": "is:unread -from:me",
+          "readStatus": "unread"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1200,
+        0
+      ],
+      "id": "29dd939b-d535-4c7c-8c6d-fbeafef30b0e",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "message": "=Hi,<br><br>\n\nThank you for contacting our support team.<br><br>\n\nYour request has been logged successfully. We will review the issue and get back to you with a resolution as soon as possible.<br><br>\n\nThank you for your patience.<br><br>\n\nBest regards,<br>\nSupport Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        -192
+      ],
+      "id": "7a4f3c68-5a2e-48c7-bd31-780eed7c2954",
+      "name": "Reply to a Support",
+      "webhookId": "bc9c8e15-1a96-484b-bd1f-334d38e980c7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "message": "=Hi,<br><br>\n\nThank you for reaching out to us.<br><br>\n\nWe have received your message and our team will contact you shortly regarding your request.<br><br>\n\nThank you for your time and patience.<br><br>\n\nBest regards,<br>\nTeam",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "162856b0-a93e-4607-96c4-14b3db530101",
+      "name": "Reply to Contact",
+      "webhookId": "6777953c-3fef-4abc-b38f-4b59b8284e04",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "message": "=Hi,<br><br>\n\nThank you for your interest in career opportunities with us.<br><br>\n\nWe have received your application successfully. Our recruitment team will review your profile and get back to you if your qualifications match our current openings.<br><br>\n\nWe appreciate the time and effort you took to apply.<br><br>\n\nBest regards,<br>\nHR Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        192
+      ],
+      "id": "575a7528-90e5-4b48-9df2-95b9d3e96734",
+      "name": "Reply to Career",
+      "webhookId": "12afc119-5bf7-4afc-bdb0-8d3bbaa811fd",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_788686840933740460",
+          "Label_7877779778029898154"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        -192
+      ],
+      "id": "883b5f58-7125-4b9e-b6bd-745af482ac97",
+      "name": "Label:Support",
+      "webhookId": "51c76cb4-044a-4382-93b2-7cd6fbe7f0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_788686840933740460",
+          "Label_8142043014444094198"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "41b9cfd1-253b-4ff0-9b80-3df696f4f874",
+      "name": "Label:Contact",
+      "webhookId": "508ad11d-b82b-4893-8ffb-2e52ba319cb5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_788686840933740460",
+          "Label_9050299273583933904"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        192
+      ],
+      "id": "39b1d076-efa4-464c-8a17-516c5ec1ba8c",
+      "name": "Label:Career",
+      "webhookId": "b52d670f-ed2e-40f5-b09b-0da3b68279d6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6V3bnx1xt38NOXCF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "support",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "30febb7a-a0ce-4379-a394-cb7b25952a20"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "56d78efe-7fe4-4e71-b36a-38611fca5b06",
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "contact",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a02e92da-e0b7-4075-a82f-616786f202b6",
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "career",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -528,
+        -16
+      ],
+      "id": "aa1e6be1-e28d-4f24-9a59-24a9e332df8b",
+      "name": "Route by Category"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const text = ($json.snippet || \"\").toLowerCase();\n\nlet category = \"support\";\n\nif (text.includes(\"job\") || text.includes(\"internship\") || text.includes(\"career\")) {\n  category = \"career\";\n}\nelse if (text.includes(\"contact\") || text.includes(\"call\") || text.includes(\"meeting\")) {\n  category = \"contact\";\n}\n\nreturn {\n  json: {\n    category\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -752,
+        0
+      ],
+      "id": "d5cf7414-5cc0-41d7-a4f3-e0e3a2e81fc7",
+      "name": "Extract Email Category"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a19975a5-1ac7-4da3-a647-2af03be8a2d6",
+              "leftValue": "={{ $json.From }}",
+              "rightValue": "ellurunandini80@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -976,
+        0
+      ],
+      "id": "23aa3d54-8460-4c4a-bf66-a619add5e5b7",
+      "name": "Prevent Self-Reply Loop"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prevent Self-Reply Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to a Support": {
+      "main": [
+        [
+          {
+            "node": "Label:Support",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to Contact": {
+      "main": [
+        [
+          {
+            "node": "Label:Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to Career": {
+      "main": [
+        [
+          {
+            "node": "Label:Career",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Label:Support": {
+      "main": [
+        []
+      ]
+    },
+    "Label:Contact": {
+      "main": [
+        []
+      ]
+    },
+    "Label:Career": {
+      "main": [
+        []
+      ]
+    },
+    "Route by Category": {
+      "main": [
+        [
+          {
+            "node": "Reply to a Support",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply to Contact",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply to Career",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Email Category": {
+      "main": [
+        [
+          {
+            "node": "Route by Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prevent Self-Reply Loop": {
+      "main": [
+        [
+          {
+            "node": "Extract Email Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "ab030207-9835-4879-825a-87252d2f3d4a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e290f74f7dbc2543fe817dce3a4be64661a9cc791c66e44b5fd34f2cc676cd83"
+  },
+  "id": "fnJHU6DIxf967Rvn",
+  "tags": []
+}
