@@ -1,4 +1,5 @@
-🚀 Smart Gmail Auto-Responder using n8n
+ SMART GMAIL AUTO-RESPONDER USING N8N
+🚀Automated Gmail response system built with n8n that classifies incoming emails and send smart replies automatically. 
 
 📌 Project Overview
 
