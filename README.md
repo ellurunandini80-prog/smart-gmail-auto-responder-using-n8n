@@ -83,8 +83,9 @@ Smart-Gmail-Auto-Responder
 
 ---
 
-📸 Workflow Screenshot
+📸 Automation Workflow
 
+![Workflow](gmail-automation-workflow.png)
 
 
 ---
